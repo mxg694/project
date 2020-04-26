@@ -2,6 +2,7 @@ package cn.it.mybatisplus;
 
 import cn.it.mybatisplus.entity.User;
 import cn.it.mybatisplus.mapper.UserMapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.Test;
@@ -73,5 +74,30 @@ public class MybatisPlusApplicationTests {
         Page<User> page = new Page<>(1,2);
         IPage<User> userIPage = userMapper.selectPage(page, null);
         System.out.println( userIPage.getRecords());
+    }
+
+    /**
+     * 复杂查询
+     */
+    @Test
+    public void testQueryWrapper() {
+
+        QueryWrapper<User> qw = new QueryWrapper<>();
+        // ge  gt  le  lt  大于 小于
+        qw.gt("age", 30);
+        //eq, nt   等于 不等于
+        qw.eq("name","lilei");
+        //between  在...之间
+
+        //like  模糊查询
+
+        //orderByDesc   排序
+
+        //last   拼接sql 语句
+        qw.last("limit 1");
+        //指定要查询的列   select 后面的字段
+        qw.select("id", "name");
+        userMapper.selectList(qw);
+
     }
 }
