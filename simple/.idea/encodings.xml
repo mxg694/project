@@ -20,5 +20,16 @@
     <file url="file://$PROJECT_DIR$/letcode/src/main/java/简单" charset="GBK" />
     <file url="file://$PROJECT_DIR$/letcode/src/main/java/网址.md" charset="GBK" />
     <file url="file://$PROJECT_DIR$/mybatis-plus" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myspringboot" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/myspringboot/src/main/java/cn/it/myspringboot/Appconfig.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../spring-cloud" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring-cloud/eureka3000" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring-cloud/eureka3001" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring-cloud/eureka3002" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring-cloud/order" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring-cloud/order1" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring-cloud/power" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring-cloud/power1" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../spring-cloud/user" charset="UTF-8" />
   </component>
 </project>

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1ee05b5f-041a-4d71-9bc3-d2edf2ac6302" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/artifacts/myspringboot_war.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/artifacts/myspringboot_war_exploded.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__javax_servlet_javax_servlet_api_3_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_core_8_5_31.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_apache_tomcat_embed_tomcat_embed_el_8_5_31.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_apache_tomcat_tomcat_annotations_api_8_5_31.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_springframework_spring_aop_5_0_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_springframework_spring_beans_5_0_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_springframework_spring_context_5_0_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_springframework_spring_core_5_0_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_springframework_spring_expression_5_0_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_springframework_spring_jcl_5_0_9_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_springframework_spring_web_5_0_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/.idea/libraries/Maven__org_springframework_spring_webmvc_5_0_8_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/letcode/src/main/java/demo/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/mySpringboot/mySpringboot.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/mySpringboot/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/mySpringboot/src/main/java/cn/it/myspringboot/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/myspringboot/src/main/java/cn/it/myspringboot/FileUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/myspringboot/src/main/java/cn/it/myspringboot/Lubannitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/myspringboot/src/main/java/cn/it/myspringboot/SpringApplicationLuban.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/myspringboot/src/main/java/cn/it/myspringboot/SpringServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/myspringboot/src/main/java/cn/it/myspringboot/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/myspringboot/src/main/resource/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/myspringboot/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../simple/myspringboot/src/main/webapp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/$CACHE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__antlr_antlr_2_7_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_woodstox_woodstox_core_5_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_16_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_inject_guice_4_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_archaius_archaius_core_0_7_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_netflix_commons_netflix_eventbus_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_netflix_commons_netflix_infix_0_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_netflix_commons_netflix_statistics_0_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_netflix_servo_servo_core_0_12_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_jersey_contribs_jersey_apache_client4_1_19_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_jersey_jersey_client_1_19_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_jersey_jersey_core_1_19_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_jersey_jersey_server_1_19_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_jersey_jersey_servlet_1_19_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_collections_commons_collections_3_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_configuration_commons_configuration_1_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_jxpath_commons_jxpath_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxjava_1_3_8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxnetty_0_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxnetty_contexts_0_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_reactivex_rxnetty_servo_0_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_annotation_javax_annotation_api_1_3_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_inject_javax_inject_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_validation_validation_api_2_0_1_Final.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_ws_rs_jsr311_api_1_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_antlr_runtime_3_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_antlr_stringtemplate_3_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_math_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcpkix_jdk15on_1_60.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_bouncycastle_bcprov_jdk15on_1_60.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_jettison_jettison_1_3_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hdrhistogram_HdrHistogram_2_1_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_latencyutils_LatencyUtils_2_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_rsa_1_0_7_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__stax_stax_api_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xmlpull_xmlpull_1_1_3_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xpp3_xpp3_min_1_1_4c.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eureka3001/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eureka3001/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eureka3002/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/eureka3002/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order1/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/order1/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/power/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/power/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/power1/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/power1/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/config/OrderRuleConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/java/config/PowerRuleConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/user/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/BeanMetadataElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/BeanMetadataElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/BeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/BeanFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/config/BeanDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/config/BeanDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/config/ConfigurableBeanFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/config/ConfigurableBeanFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/support/BeanDefinitionRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/support/BeanNameGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-beans/src/main/java/org/springframework/beans/factory/support/BeanNameGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-context/src/main/java/org/springframework/context/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-context/src/main/java/org/springframework/context/ApplicationContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-context/src/main/java/org/springframework/context/annotation/AnnotatedBeanDefinitionReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-context/src/main/java/org/springframework/context/annotation/AnnotatedBeanDefinitionReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-context/src/main/java/org/springframework/context/annotation/ClassPathScanningCandidateComponentProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-context/src/main/java/org/springframework/context/annotation/ClassPathScanningCandidateComponentProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-context/src/main/java/org/springframework/context/annotation/ConditionEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-context/src/main/java/org/springframework/context/annotation/ConditionEvaluator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/asm/ClassReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/asm/ClassReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/asm/ClassVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/asm/ClassVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/asm/Context.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/asm/Context.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/core/AliasRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/core/AliasRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/core/AttributeAccessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/core/AttributeAccessor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/core/io/ResourceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Myspring-framework-5.0.x/spring-core/src/main/java/org/springframework/core/io/ResourceLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../simple/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../simple/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../simple/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../simple/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/letcode/letcode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../simple/letcode/letcode.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/letcode/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../simple/letcode/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/mybatis-plus/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/mybatis-plus/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/mybatis-plus/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../simple/mybatis-plus/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../simple/mybatis-plus/src/test/java/cn/it/mybatisplus/MybatisPlusApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../simple/mybatis-plus/src/test/java/cn/it/mybatisplus/MybatisPlusApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\maven\apache-maven-3.5.4\repository" />
+        <option name="mavenHome" value="D:/maven/apache-maven-3.5.4" />
+        <option name="userSettingsFile" value="D:\maven\apache-maven-3.5.4\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx1024m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1b515vqwscwyWOjc8adAZVLs6Y8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/user/src/main/java/cn/it/user" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="File.Encoding" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\myproject\spring-cloud\power\src\main\resources" />
+      <recent name="D:\myproject\spring-cloud\power1\src\main\resources" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="cn.it.user" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="cn.it.order.controller" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\myproject\spring-cloud\power" />
+      <recent name="D:\myproject\spring-cloud\order\src\main\java\cn\it\order" />
+      <recent name="D:\myproject\spring-cloud\user\src\main\java\cn\it\user\luban\controller" />
+      <recent name="D:\myproject\spring-cloud\user\src\main\java\cn\it\user\luban" />
+      <recent name="D:\myproject\spring-cloud\user\src\main\java\cn\it\user" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.UserApplication">
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <module name="main1" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+      <module name="main1" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="eureka (1)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.it.eureka.EurekaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="eureka (2)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.it.eureka.EurekaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="eureka" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.it.eureka.EurekaApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="order (1)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.it.order.OrderApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="order" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.it.order.OrderApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PowerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="power (1)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.it.power.PowerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PowerApplication (2)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="user (1)" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.it.power.PowerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PowerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="power" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.it.power.PowerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="user" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="cn.it.user.UserApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.EurekaApplication (1)" />
+        <item itemvalue="Spring Boot.PowerApplication (1)" />
+        <item itemvalue="Spring Boot.PowerApplication (2)" />
+        <item itemvalue="Spring Boot.OrderApplication (1)" />
+        <item itemvalue="Spring Boot.EurekaApplication (2)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <option name="contentProportion" value="0.1270243" />
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

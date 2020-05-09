@@ -68,6 +68,7 @@ public interface BeanDefinitionRegistry extends AliasRegistry {
 	   @see ChildBeanDefinition
 	 *
 	   用这个注册表注册一个新的bean定义
+	   必须支持RootBeanDefinition和ChildBeanDefinition。
 	 */
 	void registerBeanDefinition(String beanName, BeanDefinition beanDefinition)
 			throws BeanDefinitionStoreException;

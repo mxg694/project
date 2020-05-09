@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.Test;
+import org.junit.platform.commons.util.StringUtils;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -98,6 +99,5 @@ public class MybatisPlusApplicationTests {
         //指定要查询的列   select 后面的字段
         qw.select("id", "name");
         userMapper.selectList(qw);
-
     }
 }

@@ -1,17 +1,17 @@
 /*
- * Copyright 2002-2018 the original author or authors.
+   Copyright 2002-2018 the original author or authors.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
  *
- *      https://www.apache.org/licenses/LICENSE-2.0
+        https://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
  */
 
 package org.springframework.context.annotation;
@@ -39,11 +39,13 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.MultiValueMap;
 
 /**
- * Internal class used to evaluate {@link Conditional} annotations.
+   Internal class used to evaluate {@link Conditional} annotations.
  *
- * @author Phillip Webb
- * @author Juergen Hoeller
- * @since 4.0
+   @author Phillip Webb
+   @author Juergen Hoeller
+   @since 4.0
+
+   内部类，用于计算{@link条件}注释
  */
 class ConditionEvaluator {
 
@@ -51,7 +53,7 @@ class ConditionEvaluator {
 
 
 	/**
-	 * Create a new {@link ConditionEvaluator} instance.
+	   Create a new {@link ConditionEvaluator} instance.
 	 */
 	public ConditionEvaluator(@Nullable BeanDefinitionRegistry registry,
 			@Nullable Environment environment, @Nullable ResourceLoader resourceLoader) {
@@ -61,21 +63,21 @@ class ConditionEvaluator {
 
 
 	/**
-	 * Determine if an item should be skipped based on {@code @Conditional} annotations.
-	 * The {@link ConfigurationPhase} will be deduced from the type of item (i.e. a
-	 * {@code @Configuration} class will be {@link ConfigurationPhase#PARSE_CONFIGURATION})
-	 * @param metadata the meta data
-	 * @return if the item should be skipped
+	   Determine if an item should be skipped based on {@code @Conditional} annotations.
+	   The {@link ConfigurationPhase} will be deduced from the type of item (i.e. a
+	   {@code @Configuration} class will be {@link ConfigurationPhase#PARSE_CONFIGURATION})
+	   @param metadata the meta data
+	   @return if the item should be skipped
 	 */
 	public boolean shouldSkip(AnnotatedTypeMetadata metadata) {
 		return shouldSkip(metadata, null);
 	}
 
 	/**
-	 * Determine if an item should be skipped based on {@code @Conditional} annotations.
-	 * @param metadata the meta data
-	 * @param phase the phase of the call
-	 * @return if the item should be skipped
+	   Determine if an item should be skipped based on {@code @Conditional} annotations.
+	   @param metadata the meta data
+	   @param phase the phase of the call
+	   @return if the item should be skipped
 	 */
 	public boolean shouldSkip(@Nullable AnnotatedTypeMetadata metadata, @Nullable ConfigurationPhase phase) {
 		if (metadata == null || !metadata.isAnnotated(Conditional.class.getName())) {
@@ -127,7 +129,7 @@ class ConditionEvaluator {
 
 
 	/**
-	 * Implementation of a {@link ConditionContext}.
+	   Implementation of a {@link ConditionContext}.
 	 */
 	private static class ConditionContextImpl implements ConditionContext {
 

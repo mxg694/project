@@ -1,31 +1,31 @@
 /***
- * ASM: a very small and fast Java bytecode manipulation framework
- * Copyright (c) 2000-2011 INRIA, France Telecom
- * All rights reserved.
+   ASM: a very small and fast Java bytecode manipulation framework
+   Copyright (c) 2000-2011 INRIA, France Telecom
+   All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the copyright holders nor the names of its
- *    contributors may be used to endorse or promote products derived from
- *    this software without specific prior written permission.
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+   1. Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+   2. Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+   3. Neither the name of the copyright holders nor the names of its
+      contributors may be used to endorse or promote products derived from
+      this software without specific prior written permission.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
- * THE POSSIBILITY OF SUCH DAMAGE.
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
+   THE POSSIBILITY OF SUCH DAMAGE.
  */
 package org.springframework.asm;
 
@@ -33,124 +33,127 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * A Java class parser to make a {@link ClassVisitor} visit an existing class.
- * This class parses a byte array conforming to the Java class file format and
- * calls the appropriate visit methods of a given class visitor for each field,
- * method and bytecode instruction encountered.
- * 
- * @author Eric Bruneton
- * @author Eugene Kuleshov
+   A Java class parser to make a {@link ClassVisitor} visit an existing class.
+   This class parses a byte array conforming to the Java class file format and
+   calls the appropriate visit methods of a given class visitor for each field,
+   method and bytecode instruction encountered.
+   
+   @author Eric Bruneton
+   @author Eugene Kuleshov
+
+   一个让{@link ClassVisitor}访问现有类的Java类解析器。
+   该类解析符合Java类文件格式的字节数组 为每个字段调用给定类visitor的适当访问方法， 方法和字节码指令。
  */
 public class ClassReader {
 
     /**
-     * True to enable signatures support.
+       True to enable signatures support.
      */
     static final boolean SIGNATURES = true;
 
     /**
-     * True to enable annotations support.
+       True to enable annotations support.
      */
     static final boolean ANNOTATIONS = true;
 
     /**
-     * True to enable stack map frames support.
+       True to enable stack map frames support.
      */
     static final boolean FRAMES = true;
 
     /**
-     * True to enable bytecode writing support.
+       True to enable bytecode writing support.
      */
     static final boolean WRITER = true;
 
     /**
-     * True to enable JSR_W and GOTO_W support.
+       True to enable JSR_W and GOTO_W support.
      */
     static final boolean RESIZE = true;
 
     /**
-     * Flag to skip method code. If this class is set <code>CODE</code>
-     * attribute won't be visited. This can be used, for example, to retrieve
-     * annotations for methods and method parameters.
+       Flag to skip method code. If this class is set <code>CODE</code>
+       attribute won't be visited. This can be used, for example, to retrieve
+       annotations for methods and method parameters.
      */
     public static final int SKIP_CODE = 1;
 
     /**
-     * Flag to skip the debug information in the class. If this flag is set the
-     * debug information of the class is not visited, i.e. the
-     * {@link MethodVisitor#visitLocalVariable visitLocalVariable} and
-     * {@link MethodVisitor#visitLineNumber visitLineNumber} methods will not be
-     * called.
+       Flag to skip the debug information in the class. If this flag is set the
+       debug information of the class is not visited, i.e. the
+       {@link MethodVisitor#visitLocalVariable visitLocalVariable} and
+       {@link MethodVisitor#visitLineNumber visitLineNumber} methods will not be
+       called.
      */
     public static final int SKIP_DEBUG = 2;
 
     /**
-     * Flag to skip the stack map frames in the class. If this flag is set the
-     * stack map frames of the class is not visited, i.e. the
-     * {@link MethodVisitor#visitFrame visitFrame} method will not be called.
-     * This flag is useful when the {@link ClassWriter#COMPUTE_FRAMES} option is
-     * used: it avoids visiting frames that will be ignored and recomputed from
-     * scratch in the class writer.
+       Flag to skip the stack map frames in the class. If this flag is set the
+       stack map frames of the class is not visited, i.e. the
+       {@link MethodVisitor#visitFrame visitFrame} method will not be called.
+       This flag is useful when the {@link ClassWriter#COMPUTE_FRAMES} option is
+       used: it avoids visiting frames that will be ignored and recomputed from
+       scratch in the class writer.
      */
     public static final int SKIP_FRAMES = 4;
 
     /**
-     * Flag to expand the stack map frames. By default stack map frames are
-     * visited in their original format (i.e. "expanded" for classes whose
-     * version is less than V1_6, and "compressed" for the other classes). If
-     * this flag is set, stack map frames are always visited in expanded format
-     * (this option adds a decompression/recompression step in ClassReader and
-     * ClassWriter which degrades performances quite a lot).
+       Flag to expand the stack map frames. By default stack map frames are
+       visited in their original format (i.e. "expanded" for classes whose
+       version is less than V1_6, and "compressed" for the other classes). If
+       this flag is set, stack map frames are always visited in expanded format
+       (this option adds a decompression/recompression step in ClassReader and
+       ClassWriter which degrades performances quite a lot).
      */
     public static final int EXPAND_FRAMES = 8;
 
     /**
-     * Flag to expand the ASM pseudo instructions into an equivalent sequence of
-     * standard bytecode instructions. When resolving a forward jump it may
-     * happen that the signed 2 bytes offset reserved for it is not sufficient
-     * to store the bytecode offset. In this case the jump instruction is
-     * replaced with a temporary ASM pseudo instruction using an unsigned 2
-     * bytes offset (see Label#resolve). This internal flag is used to re-read
-     * classes containing such instructions, in order to replace them with
-     * standard instructions. In addition, when this flag is used, GOTO_W and
-     * JSR_W are <i>not</i> converted into GOTO and JSR, to make sure that
-     * infinite loops where a GOTO_W is replaced with a GOTO in ClassReader and
-     * converted back to a GOTO_W in ClassWriter cannot occur.
+       Flag to expand the ASM pseudo instructions into an equivalent sequence of
+       standard bytecode instructions. When resolving a forward jump it may
+       happen that the signed 2 bytes offset reserved for it is not sufficient
+       to store the bytecode offset. In this case the jump instruction is
+       replaced with a temporary ASM pseudo instruction using an unsigned 2
+       bytes offset (see Label#resolve). This internal flag is used to re-read
+       classes containing such instructions, in order to replace them with
+       standard instructions. In addition, when this flag is used, GOTO_W and
+       JSR_W are <i>not</i> converted into GOTO and JSR, to make sure that
+       infinite loops where a GOTO_W is replaced with a GOTO in ClassReader and
+       converted back to a GOTO_W in ClassWriter cannot occur.
      */
     static final int EXPAND_ASM_INSNS = 256;
 
     /**
-     * The class to be parsed. <i>The content of this array must not be
-     * modified. This field is intended for {@link Attribute} sub classes, and
-     * is normally not needed by class generators or adapters.</i>
+       The class to be parsed. <i>The content of this array must not be
+       modified. This field is intended for {@link Attribute} sub classes, and
+       is normally not needed by class generators or adapters.</i>
      */
     public final byte[] b;
 
     /**
-     * The start index of each constant pool item in {@link #b b}, plus one. The
-     * one byte offset skips the constant pool item tag that indicates its type.
+       The start index of each constant pool item in {@link #b b}, plus one. The
+       one byte offset skips the constant pool item tag that indicates its type.
      */
     private final int[] items;
 
     /**
-     * The String objects corresponding to the CONSTANT_Utf8 items. This cache
-     * avoids multiple parsing of a given CONSTANT_Utf8 constant pool item,
-     * which GREATLY improves performances (by a factor 2 to 3). This caching
-     * strategy could be extended to all constant pool items, but its benefit
-     * would not be so great for these items (because they are much less
-     * expensive to parse than CONSTANT_Utf8 items).
+       The String objects corresponding to the CONSTANT_Utf8 items. This cache
+       avoids multiple parsing of a given CONSTANT_Utf8 constant pool item,
+       which GREATLY improves performances (by a factor 2 to 3). This caching
+       strategy could be extended to all constant pool items, but its benefit
+       would not be so great for these items (because they are much less
+       expensive to parse than CONSTANT_Utf8 items).
      */
     private final String[] strings;
 
     /**
-     * Maximum length of the strings contained in the constant pool of the
-     * class.
+       Maximum length of the strings contained in the constant pool of the
+       class.
      */
     private final int maxStringLength;
 
     /**
-     * Start index of the class header information (access, name...) in
-     * {@link #b b}.
+       Start index of the class header information (access, name...) in
+       {@link #b b}.
      */
     public final int header;
 
@@ -159,29 +162,29 @@ public class ClassReader {
     // ------------------------------------------------------------------------
 
     /**
-     * Constructs a new {@link ClassReader} object.
-     * 
-     * @param b
-     *            the bytecode of the class to be read.
+       Constructs a new {@link ClassReader} object.
+       
+       @param b
+                  the bytecode of the class to be read.
      */
     public ClassReader(final byte[] b) {
         this(b, 0, b.length);
     }
 
     /**
-     * Constructs a new {@link ClassReader} object.
-     * 
-     * @param b
-     *            the bytecode of the class to be read.
-     * @param off
-     *            the start offset of the class data.
-     * @param len
-     *            the length of the class data.
+       Constructs a new {@link ClassReader} object.
+       
+       @param b
+                  the bytecode of the class to be read.
+       @param off
+                  the start offset of the class data.
+       @param len
+                  the length of the class data.
      */
     public ClassReader(final byte[] b, final int off, final int len) {
         this.b = b;
         // checks the class version
-		/* SPRING PATCH: REMOVED FOR FORWARD COMPATIBILITY WITH JDK 9
+		/*  SPRING PATCH: REMOVED FOR FORWARD COMPATIBILITY WITH JDK 9
         if (readShort(off + 6) > Opcodes.V1_8) {
             throw new IllegalArgumentException();
         }
@@ -236,52 +239,52 @@ public class ClassReader {
     }
 
     /**
-     * Returns the class's access flags (see {@link Opcodes}). This value may
-     * not reflect Deprecated and Synthetic flags when bytecode is before 1.5
-     * and those flags are represented by attributes.
-     * 
-     * @return the class access flags
-     * 
-     * @see ClassVisitor#visit(int, int, String, String, String, String[])
+       Returns the class's access flags (see {@link Opcodes}). This value may
+       not reflect Deprecated and Synthetic flags when bytecode is before 1.5
+       and those flags are represented by attributes.
+       
+       @return the class access flags
+       
+       @see ClassVisitor#visit(int, int, String, String, String, String[])
      */
     public int getAccess() {
         return readUnsignedShort(header);
     }
 
     /**
-     * Returns the internal name of the class (see
-     * {@link Type#getInternalName() getInternalName}).
-     * 
-     * @return the internal class name
-     * 
-     * @see ClassVisitor#visit(int, int, String, String, String, String[])
+       Returns the internal name of the class (see
+       {@link Type#getInternalName() getInternalName}).
+       
+       @return the internal class name
+       
+       @see ClassVisitor#visit(int, int, String, String, String, String[])
      */
     public String getClassName() {
         return readClass(header + 2, new char[maxStringLength]);
     }
 
     /**
-     * Returns the internal of name of the super class (see
-     * {@link Type#getInternalName() getInternalName}). For interfaces, the
-     * super class is {@link Object}.
-     * 
-     * @return the internal name of super class, or <tt>null</tt> for
-     *         {@link Object} class.
-     * 
-     * @see ClassVisitor#visit(int, int, String, String, String, String[])
+       Returns the internal of name of the super class (see
+       {@link Type#getInternalName() getInternalName}). For interfaces, the
+       super class is {@link Object}.
+       
+       @return the internal name of super class, or <tt>null</tt> for
+               {@link Object} class.
+       
+       @see ClassVisitor#visit(int, int, String, String, String, String[])
      */
     public String getSuperName() {
         return readClass(header + 4, new char[maxStringLength]);
     }
 
     /**
-     * Returns the internal names of the class's interfaces (see
-     * {@link Type#getInternalName() getInternalName}).
-     * 
-     * @return the array of internal names for all implemented interfaces or
-     *         <tt>null</tt>.
-     * 
-     * @see ClassVisitor#visit(int, int, String, String, String, String[])
+       Returns the internal names of the class's interfaces (see
+       {@link Type#getInternalName() getInternalName}).
+       
+       @return the array of internal names for all implemented interfaces or
+               <tt>null</tt>.
+       
+       @see ClassVisitor#visit(int, int, String, String, String, String[])
      */
     public String[] getInterfaces() {
         int index = header + 6;
@@ -298,11 +301,11 @@ public class ClassReader {
     }
 
     /**
-     * Copies the constant pool data into the given {@link ClassWriter}. Should
-     * be called before the {@link #accept(ClassVisitor,int)} method.
-     * 
-     * @param classWriter
-     *            the {@link ClassWriter} to copy constant pool into.
+       Copies the constant pool data into the given {@link ClassWriter}. Should
+       be called before the {@link #accept(ClassVisitor,int)} method.
+       
+       @param classWriter
+                  the {@link ClassWriter} to copy constant pool into.
      */
     void copyPool(final ClassWriter classWriter) {
         char[] buf = new char[maxStringLength];
@@ -383,16 +386,16 @@ public class ClassReader {
         int off = items[1] - 1;
         classWriter.pool.putByteArray(b, off, header - off);
         classWriter.items = items2;
-        classWriter.threshold = (int) (0.75d * ll);
+        classWriter.threshold = (int) (0.75d  * ll);
         classWriter.index = ll;
     }
 
     /**
-     * Copies the bootstrap method data into the given {@link ClassWriter}.
-     * Should be called before the {@link #accept(ClassVisitor,int)} method.
-     * 
-     * @param classWriter
-     *            the {@link ClassWriter} to copy bootstrap methods into.
+       Copies the bootstrap method data into the given {@link ClassWriter}.
+       Should be called before the {@link #accept(ClassVisitor,int)} method.
+       
+       @param classWriter
+                  the {@link ClassWriter} to copy bootstrap methods into.
      */
     private void copyBootstrapMethods(final ClassWriter classWriter,
             final Item[] items, final char[] c) {
@@ -434,24 +437,24 @@ public class ClassReader {
     }
 
     /**
-     * Constructs a new {@link ClassReader} object.
-     * 
-     * @param is
-     *            an input stream from which to read the class.
-     * @throws IOException
-     *             if a problem occurs during reading.
+       Constructs a new {@link ClassReader} object.
+       
+       @param is
+                  an input stream from which to read the class.
+       @throws IOException
+                   if a problem occurs during reading.
      */
     public ClassReader(final InputStream is) throws IOException {
         this(readClass(is, false));
     }
 
     /**
-     * Constructs a new {@link ClassReader} object.
-     * 
-     * @param name
-     *            the binary qualified name of the class to be read.
-     * @throws IOException
-     *             if an exception occurs during reading.
+       Constructs a new {@link ClassReader} object.
+       
+       @param name
+                  the binary qualified name of the class to be read.
+       @throws IOException
+                   if an exception occurs during reading.
      */
     public ClassReader(final String name) throws IOException {
         this(readClass(
@@ -460,15 +463,15 @@ public class ClassReader {
     }
 
     /**
-     * Reads the bytecode of a class.
-     * 
-     * @param is
-     *            an input stream from which to read the class.
-     * @param close
-     *            true to close the input stream after reading.
-     * @return the bytecode read from the given input stream.
-     * @throws IOException
-     *             if a problem occurs during reading.
+       Reads the bytecode of a class.
+       
+       @param is
+                  an input stream from which to read the class.
+       @param close
+                  true to close the input stream after reading.
+       @return the bytecode read from the given input stream.
+       @throws IOException
+                   if a problem occurs during reading.
      */
     private static byte[] readClass(final InputStream is, boolean close)
             throws IOException {
@@ -512,41 +515,41 @@ public class ClassReader {
     // ------------------------------------------------------------------------
 
     /**
-     * Makes the given visitor visit the Java class of this {@link ClassReader}
-     * . This class is the one specified in the constructor (see
-     * {@link #ClassReader(byte[]) ClassReader}).
-     * 
-     * @param classVisitor
-     *            the visitor that must visit this class.
-     * @param flags
-     *            option flags that can be used to modify the default behavior
-     *            of this class. See {@link #SKIP_DEBUG}, {@link #EXPAND_FRAMES}
-     *            , {@link #SKIP_FRAMES}, {@link #SKIP_CODE}.
+       Makes the given visitor visit the Java class of this {@link ClassReader}
+       . This class is the one specified in the constructor (see
+       {@link #ClassReader(byte[]) ClassReader}).
+       
+       @param classVisitor
+                  the visitor that must visit this class.
+       @param flags
+                  option flags that can be used to modify the default behavior
+                  of this class. See {@link #SKIP_DEBUG}, {@link #EXPAND_FRAMES}
+                  , {@link #SKIP_FRAMES}, {@link #SKIP_CODE}.
      */
     public void accept(final ClassVisitor classVisitor, final int flags) {
         accept(classVisitor, new Attribute[0], flags);
     }
 
     /**
-     * Makes the given visitor visit the Java class of this {@link ClassReader}.
-     * This class is the one specified in the constructor (see
-     * {@link #ClassReader(byte[]) ClassReader}).
-     * 
-     * @param classVisitor
-     *            the visitor that must visit this class.
-     * @param attrs
-     *            prototypes of the attributes that must be parsed during the
-     *            visit of the class. Any attribute whose type is not equal to
-     *            the type of one the prototypes will not be parsed: its byte
-     *            array value will be passed unchanged to the ClassWriter.
-     *            <i>This may corrupt it if this value contains references to
-     *            the constant pool, or has syntactic or semantic links with a
-     *            class element that has been transformed by a class adapter
-     *            between the reader and the writer</i>.
-     * @param flags
-     *            option flags that can be used to modify the default behavior
-     *            of this class. See {@link #SKIP_DEBUG}, {@link #EXPAND_FRAMES}
-     *            , {@link #SKIP_FRAMES}, {@link #SKIP_CODE}.
+       Makes the given visitor visit the Java class of this {@link ClassReader}.
+       This class is the one specified in the constructor (see
+       {@link #ClassReader(byte[]) ClassReader}).
+       
+       @param classVisitor
+                  the visitor that must visit this class.
+       @param attrs
+                  prototypes of the attributes that must be parsed during the
+                  visit of the class. Any attribute whose type is not equal to
+                  the type of one the prototypes will not be parsed: its byte
+                  array value will be passed unchanged to the ClassWriter.
+                  <i>This may corrupt it if this value contains references to
+                  the constant pool, or has syntactic or semantic links with a
+                  class element that has been transformed by a class adapter
+                  between the reader and the writer</i>.
+       @param flags
+                  option flags that can be used to modify the default behavior
+                  of this class. See {@link #SKIP_DEBUG}, {@link #EXPAND_FRAMES}
+                  , {@link #SKIP_FRAMES}, {@link #SKIP_CODE}.
      */
     public void accept(final ClassVisitor classVisitor,
             final Attribute[] attrs, final int flags) {
@@ -720,7 +723,7 @@ public class ClassReader {
         }
 
         // visits the fields and methods
-        u = header + 10 + 2 * interfaces.length;
+        u = header + 10 + 2 *  interfaces.length;
         for (int i = readUnsignedShort(u - 2); i > 0; --i) {
             u = readField(classVisitor, context, u);
         }
@@ -734,18 +737,18 @@ public class ClassReader {
     }
 
     /**
-     * Reads the module attribute and visit it.
+       Reads the module attribute and visit it.
      *
-     * @param classVisitor
-     *           the current class visitor
-     * @param context
-     *           information about the class being parsed.
-     * @param u
-     *           start offset of the module attribute in the class file.
-     * @param mainClass
-     *           name of the main class of a module or null.
-     * @param packages
-     *           start offset of the concealed package attribute.
+       @param classVisitor
+                 the current class visitor
+       @param context
+                 information about the class being parsed.
+       @param u
+                 start offset of the module attribute in the class file.
+       @param mainClass
+                 name of the main class of a module or null.
+       @param packages
+                 start offset of the concealed package attribute.
      */
     private void readModule(final ClassVisitor classVisitor,
             final Context context, int u,
@@ -848,15 +851,15 @@ public class ClassReader {
     }
 
     /**
-     * Reads a field and makes the given visitor visit it.
-     * 
-     * @param classVisitor
-     *            the visitor that must visit the field.
-     * @param context
-     *            information about the class being parsed.
-     * @param u
-     *            the start offset of the field in the class file.
-     * @return the offset of the first byte following the field in the class.
+       Reads a field and makes the given visitor visit it.
+       
+       @param classVisitor
+                  the visitor that must visit the field.
+       @param context
+                  information about the class being parsed.
+       @param u
+                  the start offset of the field in the class file.
+       @return the offset of the first byte following the field in the class.
      */
     private int readField(final ClassVisitor classVisitor,
             final Context context, int u) {
@@ -966,15 +969,15 @@ public class ClassReader {
     }
 
     /**
-     * Reads a method and makes the given visitor visit it.
-     * 
-     * @param classVisitor
-     *            the visitor that must visit the method.
-     * @param context
-     *            information about the class being parsed.
-     * @param u
-     *            the start offset of the method in the class file.
-     * @return the offset of the first byte following the method in the class.
+       Reads a method and makes the given visitor visit it.
+       
+       @param classVisitor
+                  the visitor that must visit the method.
+       @param context
+                  information about the class being parsed.
+       @param u
+                  the start offset of the method in the class file.
+       @return the offset of the first byte following the method in the class.
      */
     private int readMethod(final ClassVisitor classVisitor,
             final Context context, int u) {
@@ -1065,14 +1068,14 @@ public class ClassReader {
         }
 
         /*
-         * if the returned MethodVisitor is in fact a MethodWriter, it means
-         * there is no method adapter between the reader and the writer. If, in
-         * addition, the writer's constant pool was copied from this reader
-         * (mw.cw.cr == this), and the signature and exceptions of the method
-         * have not been changed, then it is possible to skip all visit events
-         * and just copy the original code of the method to the writer (the
-         * access, name and descriptor can have been changed, this is not
-         * important since they are not copied as is from the reader).
+           if the returned MethodVisitor is in fact a MethodWriter, it means
+           there is no method adapter between the reader and the writer. If, in
+           addition, the writer's constant pool was copied from this reader
+           (mw.cw.cr == this), and the signature and exceptions of the method
+           have not been changed, then it is possible to skip all visit events
+           and just copy the original code of the method to the writer (the
+           access, name and descriptor can have been changed, this is not
+           important since they are not copied as is from the reader).
          */
         if (WRITER && mv instanceof MethodWriter) {
             MethodWriter mw = (MethodWriter) mv;
@@ -1093,9 +1096,9 @@ public class ClassReader {
                 }
                 if (sameExceptions) {
                     /*
-                     * we do not copy directly the code into MethodWriter to
-                     * save a byte array copy operation. The real copy will be
-                     * done in ClassWriter.toByteArray().
+                       we do not copy directly the code into MethodWriter to
+                       save a byte array copy operation. The real copy will be
+                       done in ClassWriter.toByteArray().
                      */
                     mw.classReaderOffset = firstAttribute;
                     mw.classReaderLength = u - firstAttribute;
@@ -1175,14 +1178,14 @@ public class ClassReader {
     }
 
     /**
-     * Reads the bytecode of a method and makes the given visitor visit it.
-     * 
-     * @param mv
-     *            the visitor that must visit the method's code.
-     * @param context
-     *            information about the class being parsed.
-     * @param u
-     *            the start offset of the code attribute in the class file.
+       Reads the bytecode of a method and makes the given visitor visit it.
+       
+       @param mv
+                  the visitor that must visit the method's code.
+       @param context
+                  information about the class being parsed.
+       @param u
+                  the start offset of the code attribute in the class file.
      */
     private void readCode(final MethodVisitor mv, final Context context, int u) {
         // reads the header
@@ -1354,22 +1357,22 @@ public class ClassReader {
                     frameCount = readUnsignedShort(u + 8);
                 }
                 /*
-                 * here we do not extract the labels corresponding to the
-                 * attribute content. This would require a full parsing of the
-                 * attribute, which would need to be repeated in the second
-                 * phase (see below). Instead the content of the attribute is
-                 * read one frame at a time (i.e. after a frame has been
-                 * visited, the next frame is read), and the labels it contains
-                 * are also extracted one frame at a time. Thanks to the
-                 * ordering of frames, having only a "one frame lookahead" is
-                 * not a problem, i.e. it is not possible to see an offset
-                 * smaller than the offset of the current insn and for which no
-                 * Label exist.
+                   here we do not extract the labels corresponding to the
+                   attribute content. This would require a full parsing of the
+                   attribute, which would need to be repeated in the second
+                   phase (see below). Instead the content of the attribute is
+                   read one frame at a time (i.e. after a frame has been
+                   visited, the next frame is read), and the labels it contains
+                   are also extracted one frame at a time. Thanks to the
+                   ordering of frames, having only a "one frame lookahead" is
+                   not a problem, i.e. it is not possible to see an offset
+                   smaller than the offset of the current insn and for which no
+                   Label exist.
                  */
                 /*
-                 * This is not true for UNINITIALIZED type offsets. We solve
-                 * this by parsing the stack map table without a full decoding
-                 * (see below).
+                   This is not true for UNINITIALIZED type offsets. We solve
+                   this by parsing the stack map table without a full decoding
+                   (see below).
                  */
             } else if (FRAMES && "StackMap".equals(attrName)) {
                 if ((context.flags & SKIP_FRAMES) == 0) {
@@ -1379,9 +1382,9 @@ public class ClassReader {
                     frameCount = readUnsignedShort(u + 8);
                 }
                 /*
-                 * IMPORTANT! here we assume that the frames are ordered, as in
-                 * the StackMapTable attribute, although this is not guaranteed
-                 * by the attribute format.
+                   IMPORTANT! here we assume that the frames are ordered, as in
+                   the StackMapTable attribute, although this is not guaranteed
+                   by the attribute format.
                  */
             } else {
                 for (int j = 0; j < context.attrs.length; ++j) {
@@ -1402,9 +1405,9 @@ public class ClassReader {
         // generates the first (implicit) stack map frame
         if (FRAMES && stackMap != 0) {
             /*
-             * for the first explicit frame the offset is not offset_delta + 1
-             * but only offset_delta; setting the implicit frame offset to -1
-             * allow the use of the "offset_delta + 1" rule in all cases
+               for the first explicit frame the offset is not offset_delta + 1
+               but only offset_delta; setting the implicit frame offset to -1
+               allow the use of the "offset_delta + 1" rule in all cases
              */
             frame = context;
             frame.offset = -1;
@@ -1418,15 +1421,15 @@ public class ClassReader {
                 getImplicitFrame(context);
             }
             /*
-             * Finds labels for UNINITIALIZED frame types. Instead of decoding
-             * each element of the stack map table, we look for 3 consecutive
-             * bytes that "look like" an UNINITIALIZED type (tag 8, offset
-             * within code bounds, NEW instruction at this offset). We may find
-             * false positives (i.e. not real UNINITIALIZED types), but this
-             * should be rare, and the only consequence will be the creation of
-             * an unneeded label. This is better than creating a label for each
-             * NEW instruction, and faster than fully decoding the whole stack
-             * map table.
+               Finds labels for UNINITIALIZED frame types. Instead of decoding
+               each element of the stack map table, we look for 3 consecutive
+               bytes that "look like" an UNINITIALIZED type (tag 8, offset
+               within code bounds, NEW instruction at this offset). We may find
+               false positives (i.e. not real UNINITIALIZED types), but this
+               should be rare, and the only consequence will be the creation of
+               an unneeded label. This is better than creating a label for each
+               NEW instruction, and faster than fully decoding the whole stack
+               map table.
              */
             for (int i = stackMap; i < stackMap + stackMapSize - 2; ++i) {
                 if (b[i] == 8) { // UNINITIALIZED FRAME TYPE
@@ -1721,7 +1724,7 @@ public class ClassReader {
             int[] typeTable = null;
             if (varTypeTable != 0) {
                 u = varTypeTable + 2;
-                typeTable = new int[readUnsignedShort(varTypeTable) * 3];
+                typeTable = new int[readUnsignedShort(varTypeTable)  *  3];
                 for (int i = typeTable.length; i > 0;) {
                     typeTable[--i] = u + 6; // signature
                     typeTable[--i] = readUnsignedShort(u + 8); // index
@@ -1789,20 +1792,20 @@ public class ClassReader {
     }
 
     /**
-     * Parses a type annotation table to find the labels, and to visit the try
-     * catch block annotations.
-     * 
-     * @param u
-     *            the start offset of a type annotation table.
-     * @param mv
-     *            the method visitor to be used to visit the try catch block
-     *            annotations.
-     * @param context
-     *            information about the class being parsed.
-     * @param visible
-     *            if the type annotation table to parse contains runtime visible
-     *            annotations.
-     * @return the start offset of each type annotation in the parsed table.
+       Parses a type annotation table to find the labels, and to visit the try
+       catch block annotations.
+       
+       @param u
+                  the start offset of a type annotation table.
+       @param mv
+                  the method visitor to be used to visit the try catch block
+                  annotations.
+       @param context
+                  information about the class being parsed.
+       @param visible
+                  if the type annotation table to parse contains runtime visible
+                  annotations.
+       @return the start offset of each type annotation in the parsed table.
      */
     private int[] readTypeAnnotations(final MethodVisitor mv,
             final Context context, int u, boolean visible) {
@@ -1857,30 +1860,30 @@ public class ClassReader {
             int pathLength = readByte(u);
             if ((target >>> 24) == 0x42) {
                 TypePath path = pathLength == 0 ? null : new TypePath(b, u);
-                u += 1 + 2 * pathLength;
+                u += 1 + 2 *  pathLength;
                 u = readAnnotationValues(u + 2, c, true,
                         mv.visitTryCatchAnnotation(target, path,
                                 readUTF8(u, c), visible));
             } else {
-                u = readAnnotationValues(u + 3 + 2 * pathLength, c, true, null);
+                u = readAnnotationValues(u + 3 + 2  * pathLength, c, true, null);
             }
         }
         return offsets;
     }
 
     /**
-     * Parses the header of a type annotation to extract its target_type and
-     * target_path (the result is stored in the given context), and returns the
-     * start offset of the rest of the type_annotation structure (i.e. the
-     * offset to the type_index field, which is followed by
-     * num_element_value_pairs and then the name,value pairs).
-     * 
-     * @param context
-     *            information about the class being parsed. This is where the
-     *            extracted target_type and target_path must be stored.
-     * @param u
-     *            the start offset of a type_annotation structure.
-     * @return the start offset of the rest of the type_annotation structure.
+       Parses the header of a type annotation to extract its target_type and
+       target_path (the result is stored in the given context), and returns the
+       start offset of the rest of the type_annotation structure (i.e. the
+       offset to the type_index field, which is followed by
+       num_element_value_pairs and then the name,value pairs).
+       
+       @param context
+                  information about the class being parsed. This is where the
+                  extracted target_type and target_path must be stored.
+       @param u
+                  the start offset of a type_annotation structure.
+       @return the start offset of the rest of the type_annotation structure.
      */
     private int readAnnotationTarget(final Context context, int u) {
         int target = readInt(u);
@@ -1940,21 +1943,21 @@ public class ClassReader {
         int pathLength = readByte(u);
         context.typeRef = target;
         context.typePath = pathLength == 0 ? null : new TypePath(b, u);
-        return u + 1 + 2 * pathLength;
+        return u + 1 + 2  * pathLength;
     }
 
     /**
-     * Reads parameter annotations and makes the given visitor visit them.
-     * 
-     * @param mv
-     *            the visitor that must visit the annotations.
-     * @param context
-     *            information about the class being parsed.
-     * @param v
-     *            start offset in {@link #b b} of the annotations to be read.
-     * @param visible
-     *            <tt>true</tt> if the annotations to be read are visible at
-     *            runtime.
+       Reads parameter annotations and makes the given visitor visit them.
+       
+       @param mv
+                  the visitor that must visit the annotations.
+       @param context
+                  information about the class being parsed.
+       @param v
+                  start offset in {@link #b b} of the annotations to be read.
+       @param visible
+                  <tt>true</tt> if the annotations to be read are visible at
+                  runtime.
      */
     private void readParameterAnnotations(final MethodVisitor mv,
             final Context context, int v, final boolean visible) {
@@ -1987,21 +1990,21 @@ public class ClassReader {
     }
 
     /**
-     * Reads the values of an annotation and makes the given visitor visit them.
-     * 
-     * @param v
-     *            the start offset in {@link #b b} of the values to be read
-     *            (including the unsigned short that gives the number of
-     *            values).
-     * @param buf
-     *            buffer to be used to call {@link #readUTF8 readUTF8},
-     *            {@link #readClass(int,char[]) readClass} or {@link #readConst
-     *            readConst}.
-     * @param named
-     *            if the annotation values are named or not.
-     * @param av
-     *            the visitor that must visit the values.
-     * @return the end offset of the annotation values.
+       Reads the values of an annotation and makes the given visitor visit them.
+       
+       @param v
+                  the start offset in {@link #b b} of the values to be read
+                  (including the unsigned short that gives the number of
+                  values).
+       @param buf
+                  buffer to be used to call {@link #readUTF8 readUTF8},
+                  {@link #readClass(int,char[]) readClass} or {@link #readConst
+                  readConst}.
+       @param named
+                  if the annotation values are named or not.
+       @param av
+                  the visitor that must visit the values.
+       @return the end offset of the annotation values.
      */
     private int readAnnotationValues(int v, final char[] buf,
             final boolean named, final AnnotationVisitor av) {
@@ -2023,20 +2026,20 @@ public class ClassReader {
     }
 
     /**
-     * Reads a value of an annotation and makes the given visitor visit it.
-     * 
-     * @param v
-     *            the start offset in {@link #b b} of the value to be read
-     *            (<i>not including the value name constant pool index</i>).
-     * @param buf
-     *            buffer to be used to call {@link #readUTF8 readUTF8},
-     *            {@link #readClass(int,char[]) readClass} or {@link #readConst
-     *            readConst}.
-     * @param name
-     *            the name of the value to be read.
-     * @param av
-     *            the visitor that must visit the value.
-     * @return the end offset of the annotation value.
+       Reads a value of an annotation and makes the given visitor visit it.
+       
+       @param v
+                  the start offset in {@link #b b} of the value to be read
+                  (<i>not including the value name constant pool index</i>).
+       @param buf
+                  buffer to be used to call {@link #readUTF8 readUTF8},
+                  {@link #readClass(int,char[]) readClass} or {@link #readConst
+                  readConst}.
+       @param name
+                  the name of the value to be read.
+       @param av
+                  the visitor that must visit the value.
+       @return the end offset of the annotation value.
      */
     private int readAnnotationValue(int v, final char[] buf, final String name,
             final AnnotationVisitor av) {
@@ -2185,11 +2188,11 @@ public class ClassReader {
     }
 
     /**
-     * Computes the implicit frame of the method currently being parsed (as
-     * defined in the given {@link Context}) and stores it in the given context.
-     * 
-     * @param frame
-     *            information about the class being parsed.
+       Computes the implicit frame of the method currently being parsed (as
+       defined in the given {@link Context}) and stores it in the given context.
+       
+       @param frame
+                  information about the class being parsed.
      */
     private void getImplicitFrame(final Context frame) {
         String desc = frame.desc;
@@ -2248,18 +2251,18 @@ public class ClassReader {
     }
 
     /**
-     * Reads a stack map frame and stores the result in the given
-     * {@link Context} object.
-     * 
-     * @param stackMap
-     *            the start offset of a stack map frame in the class file.
-     * @param zip
-     *            if the stack map frame at stackMap is compressed or not.
-     * @param unzip
-     *            if the stack map frame must be uncompressed.
-     * @param frame
-     *            where the parsed stack map frame must be stored.
-     * @return the offset of the first byte following the parsed frame.
+       Reads a stack map frame and stores the result in the given
+       {@link Context} object.
+       
+       @param stackMap
+                  the start offset of a stack map frame in the class file.
+       @param zip
+                  if the stack map frame at stackMap is compressed or not.
+       @param unzip
+                  if the stack map frame must be uncompressed.
+       @param frame
+                  where the parsed stack map frame must be stored.
+       @return the offset of the first byte following the parsed frame.
      */
     private int readFrame(int stackMap, boolean zip, boolean unzip,
             Context frame) {
@@ -2334,23 +2337,23 @@ public class ClassReader {
     }
 
     /**
-     * Reads a stack map frame type and stores it at the given index in the
-     * given array.
-     * 
-     * @param frame
-     *            the array where the parsed type must be stored.
-     * @param index
-     *            the index in 'frame' where the parsed type must be stored.
-     * @param v
-     *            the start offset of the stack map frame type to read.
-     * @param buf
-     *            a buffer to read strings.
-     * @param labels
-     *            the labels of the method currently being parsed, indexed by
-     *            their offset. If the parsed type is an Uninitialized type, a
-     *            new label for the corresponding NEW instruction is stored in
-     *            this array if it does not already exist.
-     * @return the offset of the first byte after the parsed type.
+       Reads a stack map frame type and stores it at the given index in the
+       given array.
+       
+       @param frame
+                  the array where the parsed type must be stored.
+       @param index
+                  the index in 'frame' where the parsed type must be stored.
+       @param v
+                  the start offset of the stack map frame type to read.
+       @param buf
+                  a buffer to read strings.
+       @param labels
+                  the labels of the method currently being parsed, indexed by
+                  their offset. If the parsed type is an Uninitialized type, a
+                  new label for the corresponding NEW instruction is stored in
+                  this array if it does not already exist.
+       @return the offset of the first byte after the parsed type.
      */
     private int readFrameType(final Object[] frame, final int index, int v,
             final char[] buf, final Label[] labels) {
@@ -2389,17 +2392,17 @@ public class ClassReader {
     }
 
     /**
-     * Returns the label corresponding to the given offset. The default
-     * implementation of this method creates a label for the given offset if it
-     * has not been already created.
-     * 
-     * @param offset
-     *            a bytecode offset in a method.
-     * @param labels
-     *            the already created labels, indexed by their offset. If a
-     *            label already exists for offset this method must not create a
-     *            new one. Otherwise it must store the new label in this array.
-     * @return a non null Label, which must be equal to labels[offset].
+       Returns the label corresponding to the given offset. The default
+       implementation of this method creates a label for the given offset if it
+       has not been already created.
+       
+       @param offset
+                  a bytecode offset in a method.
+       @param labels
+                  the already created labels, indexed by their offset. If a
+                  label already exists for offset this method must not create a
+                  new one. Otherwise it must store the new label in this array.
+       @return a non null Label, which must be equal to labels[offset].
      */
     protected Label readLabel(int offset, Label[] labels) {
         // SPRING PATCH: leniently handle offset mismatch
@@ -2414,13 +2417,13 @@ public class ClassReader {
     }
 
     /**
-     * Returns the start index of the attribute_info structure of this class.
-     * 
-     * @return the start index of the attribute_info structure of this class.
+       Returns the start index of the attribute_info structure of this class.
+       
+       @return the start index of the attribute_info structure of this class.
      */
     private int getAttributes() {
         // skips the header
-        int u = header + 8 + readUnsignedShort(header + 6) * 2;
+        int u = header + 8 + readUnsignedShort(header + 6) *  2;
         // skips fields and methods
         for (int i = readUnsignedShort(u); i > 0; --i) {
             for (int j = readUnsignedShort(u + 8); j > 0; --j) {
@@ -2440,37 +2443,37 @@ public class ClassReader {
     }
 
     /**
-     * Reads an attribute in {@link #b b}.
-     * 
-     * @param attrs
-     *            prototypes of the attributes that must be parsed during the
-     *            visit of the class. Any attribute whose type is not equal to
-     *            the type of one the prototypes is ignored (i.e. an empty
-     *            {@link Attribute} instance is returned).
-     * @param type
-     *            the type of the attribute.
-     * @param off
-     *            index of the first byte of the attribute's content in
-     *            {@link #b b}. The 6 attribute header bytes, containing the
-     *            type and the length of the attribute, are not taken into
-     *            account here (they have already been read).
-     * @param len
-     *            the length of the attribute's content.
-     * @param buf
-     *            buffer to be used to call {@link #readUTF8 readUTF8},
-     *            {@link #readClass(int,char[]) readClass} or {@link #readConst
-     *            readConst}.
-     * @param codeOff
-     *            index of the first byte of code's attribute content in
-     *            {@link #b b}, or -1 if the attribute to be read is not a code
-     *            attribute. The 6 attribute header bytes, containing the type
-     *            and the length of the attribute, are not taken into account
-     *            here.
-     * @param labels
-     *            the labels of the method's code, or <tt>null</tt> if the
-     *            attribute to be read is not a code attribute.
-     * @return the attribute that has been read, or <tt>null</tt> to skip this
-     *         attribute.
+       Reads an attribute in {@link #b b}.
+       
+       @param attrs
+                  prototypes of the attributes that must be parsed during the
+                  visit of the class. Any attribute whose type is not equal to
+                  the type of one the prototypes is ignored (i.e. an empty
+                  {@link Attribute} instance is returned).
+       @param type
+                  the type of the attribute.
+       @param off
+                  index of the first byte of the attribute's content in
+                  {@link #b b}. The 6 attribute header bytes, containing the
+                  type and the length of the attribute, are not taken into
+                  account here (they have already been read).
+       @param len
+                  the length of the attribute's content.
+       @param buf
+                  buffer to be used to call {@link #readUTF8 readUTF8},
+                  {@link #readClass(int,char[]) readClass} or {@link #readConst
+                  readConst}.
+       @param codeOff
+                  index of the first byte of code's attribute content in
+                  {@link #b b}, or -1 if the attribute to be read is not a code
+                  attribute. The 6 attribute header bytes, containing the type
+                  and the length of the attribute, are not taken into account
+                  here.
+       @param labels
+                  the labels of the method's code, or <tt>null</tt> if the
+                  attribute to be read is not a code attribute.
+       @return the attribute that has been read, or <tt>null</tt> to skip this
+               attribute.
      */
     private Attribute readAttribute(final Attribute[] attrs, final String type,
             final int off, final int len, final char[] buf, final int codeOff,
@@ -2488,60 +2491,60 @@ public class ClassReader {
     // ------------------------------------------------------------------------
 
     /**
-     * Returns the number of constant pool items in {@link #b b}.
-     * 
-     * @return the number of constant pool items in {@link #b b}.
+       Returns the number of constant pool items in {@link #b b}.
+       
+       @return the number of constant pool items in {@link #b b}.
      */
     public int getItemCount() {
         return items.length;
     }
 
     /**
-     * Returns the start index of the constant pool item in {@link #b b}, plus
-     * one. <i>This method is intended for {@link Attribute} sub classes, and is
-     * normally not needed by class generators or adapters.</i>
-     * 
-     * @param item
-     *            the index a constant pool item.
-     * @return the start index of the constant pool item in {@link #b b}, plus
-     *         one.
+       Returns the start index of the constant pool item in {@link #b b}, plus
+       one. <i>This method is intended for {@link Attribute} sub classes, and is
+       normally not needed by class generators or adapters.</i>
+       
+       @param item
+                  the index a constant pool item.
+       @return the start index of the constant pool item in {@link #b b}, plus
+               one.
      */
     public int getItem(final int item) {
         return items[item];
     }
 
     /**
-     * Returns the maximum length of the strings contained in the constant pool
-     * of the class.
-     * 
-     * @return the maximum length of the strings contained in the constant pool
-     *         of the class.
+       Returns the maximum length of the strings contained in the constant pool
+       of the class.
+       
+       @return the maximum length of the strings contained in the constant pool
+               of the class.
      */
     public int getMaxStringLength() {
         return maxStringLength;
     }
 
     /**
-     * Reads a byte value in {@link #b b}. <i>This method is intended for
-     * {@link Attribute} sub classes, and is normally not needed by class
-     * generators or adapters.</i>
-     * 
-     * @param index
-     *            the start index of the value to be read in {@link #b b}.
-     * @return the read value.
+       Reads a byte value in {@link #b b}. <i>This method is intended for
+       {@link Attribute} sub classes, and is normally not needed by class
+       generators or adapters.</i>
+       
+       @param index
+                  the start index of the value to be read in {@link #b b}.
+       @return the read value.
      */
     public int readByte(final int index) {
         return b[index] & 0xFF;
     }
 
     /**
-     * Reads an unsigned short value in {@link #b b}. <i>This method is intended
-     * for {@link Attribute} sub classes, and is normally not needed by class
-     * generators or adapters.</i>
-     * 
-     * @param index
-     *            the start index of the value to be read in {@link #b b}.
-     * @return the read value.
+       Reads an unsigned short value in {@link #b b}. <i>This method is intended
+       for {@link Attribute} sub classes, and is normally not needed by class
+       generators or adapters.</i>
+       
+       @param index
+                  the start index of the value to be read in {@link #b b}.
+       @return the read value.
      */
     public int readUnsignedShort(final int index) {
         byte[] b = this.b;
@@ -2549,13 +2552,13 @@ public class ClassReader {
     }
 
     /**
-     * Reads a signed short value in {@link #b b}. <i>This method is intended
-     * for {@link Attribute} sub classes, and is normally not needed by class
-     * generators or adapters.</i>
-     * 
-     * @param index
-     *            the start index of the value to be read in {@link #b b}.
-     * @return the read value.
+       Reads a signed short value in {@link #b b}. <i>This method is intended
+       for {@link Attribute} sub classes, and is normally not needed by class
+       generators or adapters.</i>
+       
+       @param index
+                  the start index of the value to be read in {@link #b b}.
+       @return the read value.
      */
     public short readShort(final int index) {
         byte[] b = this.b;
@@ -2563,13 +2566,13 @@ public class ClassReader {
     }
 
     /**
-     * Reads a signed int value in {@link #b b}. <i>This method is intended for
-     * {@link Attribute} sub classes, and is normally not needed by class
-     * generators or adapters.</i>
-     * 
-     * @param index
-     *            the start index of the value to be read in {@link #b b}.
-     * @return the read value.
+       Reads a signed int value in {@link #b b}. <i>This method is intended for
+       {@link Attribute} sub classes, and is normally not needed by class
+       generators or adapters.</i>
+       
+       @param index
+                  the start index of the value to be read in {@link #b b}.
+       @return the read value.
      */
     public int readInt(final int index) {
         byte[] b = this.b;
@@ -2578,13 +2581,13 @@ public class ClassReader {
     }
 
     /**
-     * Reads a signed long value in {@link #b b}. <i>This method is intended for
-     * {@link Attribute} sub classes, and is normally not needed by class
-     * generators or adapters.</i>
-     * 
-     * @param index
-     *            the start index of the value to be read in {@link #b b}.
-     * @return the read value.
+       Reads a signed long value in {@link #b b}. <i>This method is intended for
+       {@link Attribute} sub classes, and is normally not needed by class
+       generators or adapters.</i>
+       
+       @param index
+                  the start index of the value to be read in {@link #b b}.
+       @return the read value.
      */
     public long readLong(final int index) {
         long l1 = readInt(index);
@@ -2593,17 +2596,17 @@ public class ClassReader {
     }
 
     /**
-     * Reads an UTF8 string constant pool item in {@link #b b}. <i>This method
-     * is intended for {@link Attribute} sub classes, and is normally not needed
-     * by class generators or adapters.</i>
-     * 
-     * @param index
-     *            the start index of an unsigned short value in {@link #b b},
-     *            whose value is the index of an UTF8 constant pool item.
-     * @param buf
-     *            buffer to be used to read the item. This buffer must be
-     *            sufficiently large. It is not automatically resized.
-     * @return the String corresponding to the specified UTF8 item.
+       Reads an UTF8 string constant pool item in {@link #b b}. <i>This method
+       is intended for {@link Attribute} sub classes, and is normally not needed
+       by class generators or adapters.</i>
+       
+       @param index
+                  the start index of an unsigned short value in {@link #b b},
+                  whose value is the index of an UTF8 constant pool item.
+       @param buf
+                  buffer to be used to read the item. This buffer must be
+                  sufficiently large. It is not automatically resized.
+       @return the String corresponding to the specified UTF8 item.
      */
     public String readUTF8(int index, final char[] buf) {
         int item = readUnsignedShort(index);
@@ -2619,16 +2622,16 @@ public class ClassReader {
     }
 
     /**
-     * Reads UTF8 string in {@link #b b}.
-     * 
-     * @param index
-     *            start offset of the UTF8 string to be read.
-     * @param utfLen
-     *            length of the UTF8 string to be read.
-     * @param buf
-     *            buffer to be used to read the string. This buffer must be
-     *            sufficiently large. It is not automatically resized.
-     * @return the String corresponding to the specified UTF8 string.
+       Reads UTF8 string in {@link #b b}.
+       
+       @param index
+                  start offset of the UTF8 string to be read.
+       @param utfLen
+                  length of the UTF8 string to be read.
+       @param buf
+                  buffer to be used to read the string. This buffer must be
+                  sufficiently large. It is not automatically resized.
+       @return the String corresponding to the specified UTF8 string.
      */
     private String readUTF(int index, final int utfLen, final char[] buf) {
         int endIndex = index + utfLen;
@@ -2668,11 +2671,11 @@ public class ClassReader {
     }
 
     /**
-     * Read a stringish constant item (CONSTANT_Class, CONSTANT_String,
-     * CONSTANT_MethodType, CONSTANT_Module or CONSTANT_Package
-     * @param index
-     * @param buf
-     * @return
+       Read a stringish constant item (CONSTANT_Class, CONSTANT_String,
+       CONSTANT_MethodType, CONSTANT_Module or CONSTANT_Package
+       @param index
+       @param buf
+       @return
      */
     private String readStringish(final int index, final char[] buf) {
         // computes the start index of the item in b
@@ -2682,69 +2685,69 @@ public class ClassReader {
     }
 
     /**
-     * Reads a class constant pool item in {@link #b b}. <i>This method is
-     * intended for {@link Attribute} sub classes, and is normally not needed by
-     * class generators or adapters.</i>
-     * 
-     * @param index
-     *            the start index of an unsigned short value in {@link #b b},
-     *            whose value is the index of a class constant pool item.
-     * @param buf
-     *            buffer to be used to read the item. This buffer must be
-     *            sufficiently large. It is not automatically resized.
-     * @return the String corresponding to the specified class item.
+       Reads a class constant pool item in {@link #b b}. <i>This method is
+       intended for {@link Attribute} sub classes, and is normally not needed by
+       class generators or adapters.</i>
+       
+       @param index
+                  the start index of an unsigned short value in {@link #b b},
+                  whose value is the index of a class constant pool item.
+       @param buf
+                  buffer to be used to read the item. This buffer must be
+                  sufficiently large. It is not automatically resized.
+       @return the String corresponding to the specified class item.
      */
     public String readClass(final int index, final char[] buf) {
         return readStringish(index, buf);
     }
 
     /**
-     * Reads a module constant pool item in {@link #b b}. <i>This method is
-     * intended for {@link Attribute} sub classes, and is normally not needed by
-     * class generators or adapters.</i>
+       Reads a module constant pool item in {@link #b b}. <i>This method is
+       intended for {@link Attribute} sub classes, and is normally not needed by
+       class generators or adapters.</i>
      *
-     * @param index
-     *            the start index of an unsigned short value in {@link #b b},
-     *            whose value is the index of a module constant pool item.
-     * @param buf
-     *            buffer to be used to read the item. This buffer must be
-     *            sufficiently large. It is not automatically resized.
-     * @return the String corresponding to the specified module item.
+       @param index
+                  the start index of an unsigned short value in {@link #b b},
+                  whose value is the index of a module constant pool item.
+       @param buf
+                  buffer to be used to read the item. This buffer must be
+                  sufficiently large. It is not automatically resized.
+       @return the String corresponding to the specified module item.
      */
     public String readModule(final int index, final char[] buf) {
         return readStringish(index, buf);
     }
 
     /**
-     * Reads a module constant pool item in {@link #b b}. <i>This method is
-     * intended for {@link Attribute} sub classes, and is normally not needed by
-     * class generators or adapters.</i>
+       Reads a module constant pool item in {@link #b b}. <i>This method is
+       intended for {@link Attribute} sub classes, and is normally not needed by
+       class generators or adapters.</i>
      *
-     * @param index
-     *            the start index of an unsigned short value in {@link #b b},
-     *            whose value is the index of a module constant pool item.
-     * @param buf
-     *            buffer to be used to read the item. This buffer must be
-     *            sufficiently large. It is not automatically resized.
-     * @return the String corresponding to the specified module item.
+       @param index
+                  the start index of an unsigned short value in {@link #b b},
+                  whose value is the index of a module constant pool item.
+       @param buf
+                  buffer to be used to read the item. This buffer must be
+                  sufficiently large. It is not automatically resized.
+       @return the String corresponding to the specified module item.
      */
     public String readPackage(final int index, final char[] buf) {
         return readStringish(index, buf);
     }
 
     /**
-     * Reads a numeric or string constant pool item in {@link #b b}. <i>This
-     * method is intended for {@link Attribute} sub classes, and is normally not
-     * needed by class generators or adapters.</i>
-     * 
-     * @param item
-     *            the index of a constant pool item.
-     * @param buf
-     *            buffer to be used to read the item. This buffer must be
-     *            sufficiently large. It is not automatically resized.
-     * @return the {@link Integer}, {@link Float}, {@link Long}, {@link Double},
-     *         {@link String}, {@link Type} or {@link Handle} corresponding to
-     *         the given constant pool item.
+       Reads a numeric or string constant pool item in {@link #b b}. <i>This
+       method is intended for {@link Attribute} sub classes, and is normally not
+       needed by class generators or adapters.</i>
+       
+       @param item
+                  the index of a constant pool item.
+       @param buf
+                  buffer to be used to read the item. This buffer must be
+                  sufficiently large. It is not automatically resized.
+       @return the {@link Integer}, {@link Float}, {@link Long}, {@link Double},
+               {@link String}, {@link Type} or {@link Handle} corresponding to
+               the given constant pool item.
      */
     public Object readConst(final int item, final char[] buf) {
         int index = items[item];

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_HEAP_SIZE" value="1024" />
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="user" />
+        <module name="eureka3000" />
+        <module name="power1" />
+        <module name="order" />
+        <module name="order1" />
+        <module name="eureka3002" />
+        <module name="eureka3001" />
+        <module name="power" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="eureka3000" target="1.8" />
+      <module name="eureka3001" target="1.8" />
+      <module name="eureka3002" target="1.8" />
+      <module name="luban-cloud-public" target="1.8" />
+      <module name="order" target="1.8" />
+      <module name="order1" target="1.8" />
+      <module name="power" target="1.8" />
+      <module name="power1" target="1.8" />
+      <module name="user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka3000" options="-parameters" />
+      <module name="eureka3001" options="-parameters" />
+      <module name="eureka3002" options="-parameters" />
+      <module name="order" options="-parameters" />
+      <module name="order1" options="-parameters" />
+      <module name="power" options="-parameters" />
+      <module name="power1" options="-parameters" />
+      <module name="user" options="-parameters" />
+    </option>
+  </component>
+</project>

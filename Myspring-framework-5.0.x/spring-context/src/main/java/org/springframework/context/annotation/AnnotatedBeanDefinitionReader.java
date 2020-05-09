@@ -69,6 +69,11 @@ public class AnnotatedBeanDefinitionReader {
 	   in the form of a {@code BeanDefinitionRegistry}
 	   @see #AnnotatedBeanDefinitionReader(BeanDefinitionRegistry, Environment)
 	   @see #setEnvironment(Environment)
+
+	   为给定的注册表创建一个新的{@code AnnotatedBeanDefinitionReader}。
+	   如果注册表是{@link EnvironmentCapable}，例如是{@code ApplicationContext}，
+	   将继承{@link Environment}，否则将创建一个新环境 将创建和使用{@link StandardEnvironment}。
+
 	 */
 	public AnnotatedBeanDefinitionReader(BeanDefinitionRegistry registry) {
 		this(registry, getOrCreateEnvironment(registry));
@@ -195,6 +200,8 @@ public class AnnotatedBeanDefinitionReader {
 	   @param name an explicit name for the bean
 	   @param qualifiers specific qualifier annotations to consider,
 	   in addition to qualifiers at the bean class level
+
+	   从给定的bean类注册一个bean，从它的元数据派生 class-declared注释。
 	 */
 	@SuppressWarnings("unchecked")
 	public void registerBean(Class<?> annotatedClass, String name, Class<? extends Annotation>... qualifiers) {
