@@ -4,6 +4,11 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/hystrix-dashboard/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server1/pom.xml" />
+        <option value="$PROJECT_DIR$/test-config-client/pom.xml" />
+        <option value="$PROJECT_DIR$/zipkin-server/pom.xml" />
       </list>
     </option>
   </component>

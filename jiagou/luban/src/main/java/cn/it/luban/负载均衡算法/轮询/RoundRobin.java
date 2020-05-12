@@ -1,4 +1,4 @@
-package cn.it.luban.负载均衡算法.轮训;
+package cn.it.luban.负载均衡算法.轮询;
 
 import cn.it.luban.负载均衡算法.ServiceIps;
 

@@ -2,6 +2,7 @@ package com.luban.controller;
 
 import com.luban.service.PowerFeignClient;
 import com.luban.util.R;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,6 +26,7 @@ public class UserController {
 
 
     @RequestMapping("/getUser.do")
+
     public R getUser(){
         Map<String,Object> map = new HashMap<>();
         map.put("key","user");
@@ -37,8 +39,12 @@ public class UserController {
         return R.success("操作成功",restTemplate.getForObject(ORDER_URL+"/getOrder.do",Object.class));
     }
 
-
+    /**
+     * 测试服务器 熔断 超时
+     * @return
+     */
     @RequestMapping("/getFeignPower.do")
+    @HystrixCommand(fallbackMethod="getFeignPowerFullBack")
     public R getFeignPower(){
 
         return R.success("操作成功",powerFeignClient.getPower());
@@ -49,4 +55,11 @@ public class UserController {
         return R.success("操作成功",restTemplate.getForObject(POWER_URL+"/getPower.do",Object.class));
     }
 
+    /**
+     * 服务器熔断 ，超时 之后调用的方法
+     * @return
+     */
+    public R  getFeignPowerFullBack(){
+        return R.error("系统正在维护中,请稍后重试");
+    }
 }

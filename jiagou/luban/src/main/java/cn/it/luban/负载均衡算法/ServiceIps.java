@@ -15,21 +15,20 @@ public class ServiceIps  {
     static {
         list = new ArrayList<>();
 
-        list.add("192.168.0.1");
-        list.add("192.168.0.2");
-        list.add("192.168.0.3");
-        list.add("192.168.0.4");
-        list.add("192.168.0.5");
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        list.add("D");
 
-        weight_list.put("192.168.0.2",2);
-        weight_list.put("192.168.0.3",3);
-        weight_list.put("192.168.0.4",4);
-        weight_list.put("192.168.0.5",5);
+        weight_list.put("A",2);
+        weight_list.put("B",3);
+        weight_list.put("C",4);
+        weight_list.put("D",5);
 
-        active_list.put("192.168.0.2",2);
-        active_list.put("192.168.0.3",3);
-        active_list.put("192.168.0.4",4);
-        active_list.put("192.168.0.5",5);
+        active_list.put("A",2);
+        active_list.put("B",3);
+        active_list.put("C",4);
+        active_list.put("D",5);
 
 
     }

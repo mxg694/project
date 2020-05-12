@@ -2,15 +2,22 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-server1/config-server1.iml" filepath="$PROJECT_DIR$/config-server1/config-server1.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka3000/eureka3000.iml" filepath="$PROJECT_DIR$/eureka3000/eureka3000.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka3001/eureka3001.iml" filepath="$PROJECT_DIR$/eureka3001/eureka3001.iml" />
       <module fileurl="file://$PROJECT_DIR$/eureka3002/eureka3002.iml" filepath="$PROJECT_DIR$/eureka3002/eureka3002.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hystrix-dashboard/hystrix-dashboard.iml" filepath="$PROJECT_DIR$/hystrix-dashboard/hystrix-dashboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/luban-cloud-public.iml" filepath="$PROJECT_DIR$/luban-cloud-public.iml" />
       <module fileurl="file://$PROJECT_DIR$/order/order.iml" filepath="$PROJECT_DIR$/order/order.iml" />
       <module fileurl="file://$PROJECT_DIR$/order1/order1.iml" filepath="$PROJECT_DIR$/order1/order1.iml" />
       <module fileurl="file://$PROJECT_DIR$/power/power.iml" filepath="$PROJECT_DIR$/power/power.iml" />
       <module fileurl="file://$PROJECT_DIR$/power1/power1.iml" filepath="$PROJECT_DIR$/power1/power1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test-config-client/test-config-client.iml" filepath="$PROJECT_DIR$/test-config-client/test-config-client.iml" />
       <module fileurl="file://$PROJECT_DIR$/user/user.iml" filepath="$PROJECT_DIR$/user/user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zipkin-server/zipkin-server.iml" filepath="$PROJECT_DIR$/zipkin-server/zipkin-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zuul/zuul.iml" filepath="$PROJECT_DIR$/zuul/zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zuul9001/zuul9001.iml" filepath="$PROJECT_DIR$/zuul9001/zuul9001.iml" />
     </modules>
   </component>
 </project>

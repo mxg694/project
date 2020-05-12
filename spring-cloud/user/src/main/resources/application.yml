@@ -13,3 +13,23 @@ eureka:
 spring:
   application:
     name: client-user #此实例注册到eureka服务端的name
+
+#feign:
+#  hystrix:
+#    enabled: true
+
+# 熔断器
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000   #熔断器  超时时间
+      circuitBreaker:
+        requestVolumeThreshold: 5
+#        sleepWindowInMilliseconds : 5000   时间
+
+#  threadpool:
+#    default:
+  #      coreSize: 10

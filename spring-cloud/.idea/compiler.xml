@@ -7,38 +7,59 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="user" />
-        <module name="eureka3000" />
-        <module name="power1" />
-        <module name="order" />
-        <module name="order1" />
+        <module name="config-server" />
         <module name="eureka3002" />
         <module name="eureka3001" />
+        <module name="eureka3000" />
+        <module name="order1" />
+        <module name="power1" />
+        <module name="user" />
+        <module name="test-config-client" />
+        <module name="order" />
         <module name="power" />
+        <module name="zuul" />
+        <module name="config-server1" />
+        <module name="zipkin-server" />
+        <module name="hystrix-dashboard" />
+        <module name="zuul9001" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="config-server" target="1.8" />
+      <module name="config-server1" target="1.8" />
       <module name="eureka3000" target="1.8" />
       <module name="eureka3001" target="1.8" />
       <module name="eureka3002" target="1.8" />
+      <module name="hystrix-dashboard" target="1.8" />
       <module name="luban-cloud-public" target="1.8" />
       <module name="order" target="1.8" />
       <module name="order1" target="1.8" />
       <module name="power" target="1.8" />
       <module name="power1" target="1.8" />
+      <module name="test-config-client" target="1.8" />
       <module name="user" target="1.8" />
+      <module name="zipkin-server" target="1.8" />
+      <module name="zuul" target="1.8" />
+      <module name="zuul9001" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-server" options="-parameters" />
+      <module name="config-server1" options="-parameters" />
       <module name="eureka3000" options="-parameters" />
       <module name="eureka3001" options="-parameters" />
       <module name="eureka3002" options="-parameters" />
+      <module name="hystrix-dashboard" options="-parameters" />
       <module name="order" options="-parameters" />
       <module name="order1" options="-parameters" />
       <module name="power" options="-parameters" />
       <module name="power1" options="-parameters" />
+      <module name="test-config-client" options="-parameters" />
       <module name="user" options="-parameters" />
+      <module name="zipkin-server" options="-parameters" />
+      <module name="zuul" options="-parameters" />
+      <module name="zuul9001" options="-parameters" />
     </option>
   </component>
 </project>
