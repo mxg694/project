@@ -13,6 +13,8 @@
       <module fileurl="file://$PROJECT_DIR$/../spring-cloud/power/power.iml" filepath="$PROJECT_DIR$/../spring-cloud/power/power.iml" />
       <module fileurl="file://$PROJECT_DIR$/../spring-cloud/power1/power1.iml" filepath="$PROJECT_DIR$/../spring-cloud/power1/power1.iml" />
       <module fileurl="file://$PROJECT_DIR$/../spring-cloud/user/user.iml" filepath="$PROJECT_DIR$/../spring-cloud/user/user.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../spring-cloud/zuul/zuul.iml" filepath="$PROJECT_DIR$/../spring-cloud/zuul/zuul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../spring-cloud/zuul9001/zuul9001.iml" filepath="$PROJECT_DIR$/../spring-cloud/zuul9001/zuul9001.iml" />
     </modules>
   </component>
 </project>

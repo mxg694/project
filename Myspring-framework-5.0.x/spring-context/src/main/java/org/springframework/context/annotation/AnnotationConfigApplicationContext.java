@@ -53,8 +53,8 @@ import org.springframework.util.Assert;
    独立的应用程序上下文，特别是接受带注释的类作为输入 {@link Configuration @Configuration}-带注释的类，
    但也是普通类 {@link org.springframework.stereotype。组件@Component}类型和JSR-330兼容 使用{@code javax的类。注入}注释
    允许注册类一个 一个使用{@link #register(Class…)}以及类路径扫描使用 {@link #scan(String...)}。
-   如果有多个{@code @ configuration}类，则定义@{@link Bean}方法 以后的类将覆盖以前类中定义的类
-   这是可以利用的 故意通过一个额外的{@code @Configuration}覆盖某些bean定义 类。
+   在多个{@code @ configuration}类的情况下，@{@link Bean}方法定义在 后面的类将覆盖前面类中定义的类。
+   这是可以利用的 故意通过一个额外的{@code @Configuration}覆盖特定的bean定义 类。
  */
 public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
 
@@ -114,6 +114,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	/**
 	   Propagates the given custom {@code Environment} to the underlying
 	   {@link AnnotatedBeanDefinitionReader} and {@link ClassPathBeanDefinitionScanner}.
+
 	 */
 	@Override
 	public void setEnvironment(ConfigurableEnvironment environment) {
@@ -216,6 +217,8 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	   specific ones, with the rest to be resolved through regular autowiring
 	   (may be {@code null} or empty)
 	   @since 5.0
+
+	   注册来自给定bean类的一个bean，派生其元数据 类声明的注释，并可选地提供显式构造函数 自动装配过程中需要考虑的参数。
 	 */
 	public <T> void registerBean(@Nullable String beanName, Class<T> annotatedClass, Object... constructorArguments) {
 		this.reader.doRegisterBean(annotatedClass, null, beanName, null,
