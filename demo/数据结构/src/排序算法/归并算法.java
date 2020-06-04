@@ -22,6 +22,7 @@ public class 归并算法 {
             mergeSort(arr, left, mid, temp);
             //向右递归进行分解
             mergeSort(arr, mid + 1, right, temp);
+            System.out.println(left + " " + mid +" " + right);
             //合并
             merge(arr, left, mid, right, temp);
         }

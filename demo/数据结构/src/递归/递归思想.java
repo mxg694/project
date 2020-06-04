@@ -7,21 +7,19 @@ public class 递归思想 {
 
     public static void main(String[] args) {
         //通过打印问题，回顾递归调用机制
-        test(4, 0);
+        test(4 );
     }
 
     /**
      * 打印问题
      * @param n
      */
-    public static void test(int n, int t) {
+    public static void test(int n) {
         if (n > 2) {
-            test(n - 1, t);
-            t++;
-            System.out.print("t：" +t + "  ");
-        } //else {
+            test(n - 1);
+            System.out.println(n);
+        }
         System.out.println("n=" + n);
-        // }
     }
 
     //阶乘问题
