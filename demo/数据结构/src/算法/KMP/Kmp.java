@@ -8,11 +8,11 @@ import java.util.Arrays;
 public class Kmp {
 
     public static void main(String[] args) {
-        String str1 = "BBC ABCDAB ABCDABCDABDE";
+        String str1 = "ABCDABCDABDE";
         String str2 = "ABCDABD";
         //String str2 = "BBC";
-
-        int[] next = kmpNext("ABCDABD"); //[0, 1, 2, 0]
+        //[0,0,0,0,1, 2, 0]   1，2 表示在本串中 前缀某几个字符再次出现的情况
+        int[] next = kmpNext("ABCDABD");
         System.out.println("next=" + Arrays.toString(next));
 
         int index = kmpSearch(str1, str2, next);
@@ -22,10 +22,13 @@ public class Kmp {
 
     public static int kmpSearch( String str1, String str2, int[] next ){
         for (int i=0, j =0; i < str1.length(); i++) {
+            //需要处理 str1.charAt(i) ！= str2.charAt(j), 去调整j的大小
+            //KMP算法核心点, 当前值和 子串
             while (j> 0 && str1.charAt(i) != str2.charAt(j)) {
                 j = next[j-1];
             }
             if (str1.charAt(i) == str2.charAt(j)) {
+                System.out.println(i+"-"+j);
                 j++;
             }
             if (j ==  str2.length()) {
