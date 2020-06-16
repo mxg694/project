@@ -1,9 +1,9 @@
-package 算法.动态规划算法;
+package 算法;
 
 /**
  * author: mxg
  */
-public class 背包 {
+public class 背包_动态规划算法 {
 
     public static void main(String[] args) {
         //物品的重量

@@ -1,9 +1,9 @@
-package 算法.分治算法;
+package 算法;
 
 /**
  * author: mxg
  */
-public class 汉诺塔 {
+public class 汉诺塔_分治算法 {
     public static void main(String[] args) {
         hanoiTower(3, 'A', 'B', 'C');
     }

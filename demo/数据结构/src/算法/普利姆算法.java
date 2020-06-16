@@ -1,6 +1,5 @@
-package 算法.普利姆算法;
+package 算法;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 /**

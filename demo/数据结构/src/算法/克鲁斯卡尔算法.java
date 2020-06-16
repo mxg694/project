@@ -1,4 +1,4 @@
-package 算法.克鲁斯卡尔;
+package 算法;
 
 /**
  * author: mxg

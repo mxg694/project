@@ -1,4 +1,4 @@
-package 算法.贪心算法;
+package 算法;
 
 import java.util.ArrayList;
 import java.util.HashMap;
