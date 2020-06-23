@@ -57,9 +57,10 @@ public class 希尔排序 {
             for (int i = gap; i < arr.length; i++) {
                 System.out.printf("i:" + i + "   ");
                 int  j= i;
+                //当前值
                 int temp = arr[i];
-                if (arr[j] < arr[j-gap] ){
-
+                //小于 前面的值
+                if (temp< arr[j-gap] ){
                     while (j-gap >=0 && temp<=arr[j-gap] ) {
                         //将后面的较大的数 赋值给 当前位置
                         arr[j] = arr[j-gap];
