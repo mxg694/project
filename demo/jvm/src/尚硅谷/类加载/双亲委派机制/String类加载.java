@@ -1,4 +1,4 @@
-package 尚硅谷.day02.双亲委派机制;
+package 尚硅谷.类加载.双亲委派机制;
 
 /**
  * author: mxg

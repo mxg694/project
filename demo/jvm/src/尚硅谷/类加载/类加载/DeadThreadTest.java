@@ -1,4 +1,4 @@
-package 尚硅谷.day02.类加载;
+package 尚硅谷.类加载.类加载;
 
 /**
  * author: mxg
