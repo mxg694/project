@@ -7,8 +7,8 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * author: mxg
  *
- *  day1.栈：运行
- *  day1.堆：存储
+ *  黑马.day1.栈：运行
+ *  黑马.day1.堆：存储
  */
 
 public class TestDemo {

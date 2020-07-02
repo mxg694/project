@@ -1,7 +1,5 @@
 package 尚硅谷.运行时区域.虚拟机栈;
 
-import day1.A;
-
 /**
  * author: mxg
  *

@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * author: mxg
  * -Xms20M  -Xmx20M   堆起始大小和最大大小
- *  -XX:+PringGCDetails   打印GC信息
+ *  -XX:+PrintGCDetails   打印GC信息
  *
  * 使用 jdk中的 jvisualvm工具 查看
  */
