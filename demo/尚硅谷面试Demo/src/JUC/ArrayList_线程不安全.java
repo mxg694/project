@@ -10,14 +10,15 @@ public class ArrayList_线程不安全 {
 
     public static void main(String[] args) {
         List<String> list = new ArrayList<>();
-//        Collections.synchronizedList(new ArrayList<>());
-         List<String>copyOnWriteArrayList = new CopyOnWriteArrayList();
+//        List<String> list =  Collections.synchronizedList(new ArrayList<>());
+//         List<String>copyOnWriteArrayList = new CopyOnWriteArrayList();
 
         for (int i = 0; i < 50; i++) {
+            int finalI = i;
             new Thread(()->{
-                list.add(UUID.randomUUID().toString().substring(0,8));
-                System.out.println(list);
-            }).start();
+                list.add(finalI +"");
+                System.out.println( Thread.currentThread().getName()+":  " +list);
+            }, i+ "").start();
         }
     }
 

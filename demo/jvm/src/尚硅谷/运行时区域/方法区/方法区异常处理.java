@@ -32,7 +32,9 @@ public class 方法区异常处理 extends ClassLoader {
                 test.defineClass("C" +i, code, 0,code.length);
                 j++;
             }
-        }  finally {
+        }catch (Throwable e) {
+          e.printStackTrace();
+        } finally {
             System.out.println(j);
         }
     }
