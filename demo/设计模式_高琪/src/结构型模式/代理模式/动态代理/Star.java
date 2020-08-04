@@ -6,8 +6,6 @@ package 结构型模式.代理模式.动态代理;
  * 抽象的代理类
  */
 public interface Star {
-    void pre();
     void dosomething();
-    void post();
 
 }

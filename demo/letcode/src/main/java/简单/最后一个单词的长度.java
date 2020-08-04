@@ -1,7 +1,5 @@
 package 简单;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * 给定一个仅包含大小写字母和空格 ' ' 的字符串，返回其最后一个单词的长度。
  * 如果不存在最后一个单词，请返回 0 。
@@ -20,7 +18,7 @@ public class 最后一个单词的长度 {
     }
 
     public static Integer lengthOfLastWord(String s) {
-        if (StringUtils.isNotBlank(s)) {
+        if (s != null) {
             String[] arr = s.split(" ");
             String lastword = arr[arr.length-1];
             return  lastword.length();

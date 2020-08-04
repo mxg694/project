@@ -9,14 +9,14 @@ public class 饿汉式_静态代码块 {
     }
 }
 
-class Single_statleVar {
-    private static Single_statleVar instance;
+class Single_staticBlock {
+    private static Single_staticBlock instance;
 
     static  {
-        instance = new Single_statleVar();
+        instance = new Single_staticBlock();
     }
 
-    public static Single_statleVar getInstance() {
+    public static Single_staticBlock getInstance() {
         return instance;
     }
 

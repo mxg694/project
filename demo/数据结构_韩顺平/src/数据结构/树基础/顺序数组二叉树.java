@@ -84,7 +84,5 @@ class ArrBinaryTree {
             postOrder(2 * index + 2);
         }
         System.out.println(arr[index]);
-
-
     }
 }

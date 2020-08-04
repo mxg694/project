@@ -1,0 +1,21 @@
+server:
+  port: 8001  #  启动端口,命令行可以注入
+spring:
+  application:
+    name: nacos_provider
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848 # 配置中心的地址
+        file-extension: yaml        # dataid 的名称就是application的name加上file-extension nacos_provider.yaml
+        namespace: 2864cc57-a2de-44f8-8ff5-eff383af834d
+        group: nacos_group
+#        ext-config[0]:
+#          data-id: ext-config-common01.properties
+#        ext-config[1]:
+#          data-id: ext-config-common02.properties
+#          group: GLOBAL_GROUP
+#        ext-config[2]:
+#          data-id: ext-config-common03.properties
+#          group: REFRESH_GROUP
+#          refresh: true # 动态刷新配置

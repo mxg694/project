@@ -1,7 +1,5 @@
 package 简单;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
 
 /**
@@ -61,7 +59,7 @@ public class 加一 {
     public static int[] intToArray(int num) {
         String str = String.valueOf(num);
         int[] intarr = null;
-        if (StringUtils.isNotBlank(str)) {
+        if (str != null) {
             String[] starr = str.split("");
             intarr = new int[starr.length];
             for (int i = 0; i < starr.length; i++) {
