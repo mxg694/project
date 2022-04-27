@@ -21,7 +21,7 @@
         <jackson.version>2.9.10.1</jackson.version>
         <apache.commons.version>3.6</apache.commons.version>
         <fastjson.version>1.2.68</fastjson.version>
-        <esapi.version>2.0.1</esapi.version>
+        <esapi.version>2.3.0.0</esapi.version>
         <jedis.version>2.9.0</jedis.version>
         <aliyunoss.version>2.8.1</aliyunoss.version>
         <apache.poi.version>3.17</apache.poi.version>
